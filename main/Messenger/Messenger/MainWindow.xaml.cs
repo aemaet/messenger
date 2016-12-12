@@ -43,6 +43,9 @@ namespace Messenger
 
             [DllImport("interop.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void Disconnect();
+
+            [DllImport("interop.dll", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+            public static extern void SendMessage([MarshalAs(UnmanagedType.LPStr)] string user, string message);
         }
 
         public sealed class MessengerClient
@@ -67,8 +70,7 @@ namespace Messenger
         {
             var loginInfo = msgClient.Login();
             TestLabel.Content = await loginInfo;
-            ChatWindow chatWindow = new ChatWindow();
-            chatWindow.Show();
+
            // TestLabel.Content = res;
          
         }
@@ -80,7 +82,8 @@ namespace Messenger
 
         private void Users_Click(object sender, RoutedEventArgs e)
         {
-
+            ChatWindow chatWindow = new ChatWindow();
+            chatWindow.Show();
         }
     }
 }

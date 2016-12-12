@@ -50,7 +50,7 @@ extern "C" {
 		std::string loginStr("asd@dsa");
 		std::string passwordStr("123");
 		messenger::SecurityPolicy securityPolicy;
-		g_callbackProxy.loginCallback = g_loginCallback;
+		g_callbackProxy.loginCallback = loginCallback;
 		g_messenger->Login(loginStr, passwordStr, securityPolicy, &g_callbackProxy);
 	}
 
@@ -62,6 +62,7 @@ extern "C" {
 	void __declspec(dllexport) SendMessage(const messenger::UserId& recepientId, const std::string msg)
 	{
 		messenger::MessageContent msgData = messenger::MessageContent();
+		//msgData.data(msg.begin(), msg.end());
 		std::copy(msg.begin(), msg.end(), std::back_inserter(msgData.data));
 		g_messenger->SendMessage(recepientId, msgData);
 	}

@@ -23,12 +23,13 @@ namespace Messenger
     {
         public ChatWindow()
         {
-
+            InitializeComponent();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             TestChatLabel.Content = ChatBox.Text;
+            MainWindow.MessengerInterop.SendMessage("asd@dsa", "hi");
         }
 
         private void ChatBoxKeyDown(Object sender, KeyEventArgs e)
